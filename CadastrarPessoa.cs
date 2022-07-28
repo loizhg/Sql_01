@@ -21,9 +21,9 @@ namespace Sql
         string naturalidade)
         {
             // comando sql
-            string connection = cmd.CommandText = "insert into Pessoa (Nome, Cpf, Rg, DataNascimento, Naturalidade) values (@nome, @cpf, @rg, @data_nascimento, @naturalidade)";
+            cmd.CommandText = "insert into Pessoa (Nome, Cpf, Rg, DataNascimento, Naturalidade) values (@nome, @cpf, @rg, @data_nascimento, @naturalidade)";
 
-            using (var sql = new SqlConnection(connection))
+            using (var sql = new SqlConnection())
             {
                 //parametros
                 cmd.Parameters.AddWithValue("@nome", nome);

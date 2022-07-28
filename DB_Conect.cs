@@ -14,6 +14,7 @@ namespace Sql
         {
             //colocar o @ na frente é necessário
             con.ConnectionString = @"Data Source=ITELABD13\SQLEXPRESS;Initial Catalog=Cadastro;Integrated Security=True";
+
         }
 
         public SqlConnection conectar()

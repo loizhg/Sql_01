@@ -56,7 +56,47 @@ namespace Sql
 
         public void ListarPessoas()
         {
-            
+            SqlCommand cmd = new SqlCommand();
+            String mensagem = "";
+            string connection = @"Data Source=ITELABD13\SQLEXPRESS;Initial Catalog=Cadastro;Integrated Security=True";
+
+            List<Pessoa> pessoas = new List<Pessoa>();
+            try
+            {
+                SqlDataReader resultado;
+                var query = @"SELECT Id, Nome, Cpf, Rg, DataNascimento, Naturalidade FROM Pessoa";
+                using (var sql = new SqlConnection(connection))
+                {
+                    SqlCommand command = new SqlCommand(query, sql);
+                    command.Connection.Open();
+                    resultado = command.ExecuteReader();
+
+                    while (resultado.Read())
+                    {
+                        pessoas.Add(new Pessoa(resultado.GetInt32(resultado.GetOrdinal("Id")),
+                                               resultado.GetString(resultado.GetOrdinal("Nome")),
+                                               resultado.GetString(resultado.GetOrdinal("Cpf")),
+                                               resultado.GetString(resultado.GetOrdinal("Rg")),
+                                               resultado.GetDateTime(resultado.GetOrdinal("DataNascimento")),
+                                               resultado.GetString(resultado.GetOrdinal("Naturalidade"))));
+                    }
+                }
+                Console.WriteLine("========Listagem========");
+                foreach (Pessoa p in pessoas)
+                {
+                    Console.WriteLine("========Inicio========");
+                    Console.WriteLine("Nome: " + p.Nome);
+                    Console.WriteLine("CPF: " + p.Cpf);
+                    Console.WriteLine("Rg: " + p.Rg);
+                    Console.WriteLine("Naturalidade: " + p.Naturalidade);
+                    Console.WriteLine("Data de Nascimento: " + p.DataNascimento);
+                    Console.WriteLine("========Fim========");
+                }
+            }
+            catch (Exception)
+            {
+                mensagem = "Erro!";
+            }
         }
     }
 

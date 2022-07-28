@@ -13,7 +13,7 @@ namespace Sql
         public string Nome { get; set; }
         public string Cpf { get; set; }
         public string Rg { get; set; }
-        public string Data_Nascimento { get; set; }
+        public DateTime DataNascimento { get; set; }
         public string Naturalidade { get; set; }
 
         public Pessoa() { }
@@ -23,14 +23,14 @@ namespace Sql
         string nome,
         string cpf,
         string rg,
-        string data_nascimento,
+        DateTime data_nascimento,
         string naturalidade)
         {
             this.Id = id;
             this.Nome = nome;
             this.Cpf = cpf;
             this.Rg = rg;
-            this.Data_Nascimento = data_nascimento;
+            this.DataNascimento = data_nascimento;
             this.Naturalidade = naturalidade;
         }
 

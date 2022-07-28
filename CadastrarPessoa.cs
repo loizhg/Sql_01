@@ -13,6 +13,8 @@ namespace Sql
         SqlCommand cmd = new SqlCommand();
         public String mensagem = "";
 
+        public CadastrarPessoa() { }
+
         public CadastrarPessoa(
         string nome,
         string cpf,
@@ -49,7 +51,34 @@ namespace Sql
                     this.mensagem = "Erro!";
                 }
             }
+        }
 
+        public void ListarPessoas()
+        {
+            using (var sql = new SqlConnection())
+            {
+                SqlCommand command = new SqlCommand(
+                  "SELECT * FROM Pessoa;",
+                  sql);
+                
+
+                SqlDataReader reader = command.ExecuteReader();
+
+                if (reader.HasRows)
+                {
+                    while (reader.Read())
+                    {
+                        Console.WriteLine("{0}\t{1}", reader.GetInt32(0),
+                            reader.GetString(1));
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("No rows found.");
+                }
+                reader.Close();
+            }
         }
     }
+
 }

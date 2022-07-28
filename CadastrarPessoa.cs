@@ -21,31 +21,33 @@ namespace Sql
         string naturalidade)
         {
             // comando sql
-            cmd.CommandText = "insert into Pessoa (Nome, Cpf, Rg, DataNascimento, Naturalidade) values (@nome, @cpf, @rg, @data_nascimento, @naturalidade)";
+            string connection = cmd.CommandText = "insert into Pessoa (Nome, Cpf, Rg, DataNascimento, Naturalidade) values (@nome, @cpf, @rg, @data_nascimento, @naturalidade)";
 
-            //parametros
-            cmd.Parameters.AddWithValue("@nome", nome);
-            cmd.Parameters.AddWithValue("@cpf", cpf);
-            cmd.Parameters.AddWithValue("@rg", rg);
-            cmd.Parameters.AddWithValue("@data_nascimento", data_nascimento);
-            cmd.Parameters.AddWithValue("@naturalidade", naturalidade);
-
-            //conectar com banco
-            try
+            using (var sql = new SqlConnection(connection))
             {
-                //conexao
-                cmd.Connection = conexao.conectar();
-                //executar comando
-                cmd.ExecuteNonQuery();
-                //desconectar
-                conexao.desconectar();
-                //mensagem de erro
-                this.mensagem = "Cadastrado!";
+                //parametros
+                cmd.Parameters.AddWithValue("@nome", nome);
+                cmd.Parameters.AddWithValue("@cpf", cpf);
+                cmd.Parameters.AddWithValue("@rg", rg);
+                cmd.Parameters.AddWithValue("@data_nascimento", data_nascimento);
+                cmd.Parameters.AddWithValue("@naturalidade", naturalidade);
 
-            }
-            catch (Exception)
-            {
-                this.mensagem = "Erro!";
+                //conectar com banco
+                try
+                {
+                    //conexao
+                    cmd.Connection = conexao.conectar();
+                    //executar comando
+                    cmd.ExecuteNonQuery();
+                    //desconectar
+                    conexao.desconectar();
+                    //mensagem de erro
+                    this.mensagem = "Cadastrado!";
+                }
+                catch (Exception)
+                {
+                    this.mensagem = "Erro!";
+                }
             }
 
         }

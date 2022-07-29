@@ -89,7 +89,7 @@ namespace Sql
                     //desconectar
                     conexao.desconectar();
                     //mensagem de erro
-                    this.mensagem = "Cadastrado!";
+                    this.mensagem = "Atualizado!";
                 }
                 catch (Exception)
                 {

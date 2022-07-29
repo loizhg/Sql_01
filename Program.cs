@@ -18,7 +18,7 @@ namespace Sql
             string naturalidade;
 
 
-            Console.WriteLine("digite o nome : ");
+            Console.WriteLine("digite o nome :   ");
             nome = Convert.ToString(Console.ReadLine());
             Console.WriteLine("digite o cpf : ");
             cpf = Convert.ToString(Console.ReadLine());

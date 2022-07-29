@@ -65,7 +65,7 @@ namespace Sql
         string naturalidade)
         {
             // comando sql
-            cmd.CommandText = @"update Pessoa set Nome = @nome, Cpf = @cpf, Rg = @rg, DataNascimento = @data_nascimento, Naturalidade = @naturalidade where id = 1;";
+            cmd.CommandText = @"update Pessoa set Nome = @nome, Cpf = @cpf, Rg = @rg, DataNascimento = @data_nascimento, Naturalidade = @naturalidade where Id = 2";
             //cmd.CommandText = @"UPDATE Pessoa SET Nome = @nome, Cpf = @cpf, Naturalidade = @naturalidade, DataNascimento = @data_nascimento, Naturalidade = @naturalidade where id = 2";
 
 
@@ -142,6 +142,10 @@ namespace Sql
                 mensagem = "Erro!";
             }
         }
+
+
+
+        
 
 
 
